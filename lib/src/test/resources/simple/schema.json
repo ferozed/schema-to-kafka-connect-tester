@@ -1,0 +1,32 @@
+{
+  "$id": "https://gitlab.zgtools.net/analytics/data-engineering/big-data/data-management/dma-eventhub-connector-services-itrc/-/tree/main/terraform/schemas/test_zhl_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AutomatedUnderwriting",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "app_metadata": {
+      "$ref": "#/definitions/AppMetadata"
+    },
+    "simulated_map": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {"type": "string"},
+          "value": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": [
+    "app_metadata"
+  ],
+  "definitions": {
+    "AppMetadata": {
+      "type": "object",
+      "description": "Any data that is not mapped in schema and needs a home to park",
+      "additionalProperties": { "type":  "string"}
+    }
+  }
+}

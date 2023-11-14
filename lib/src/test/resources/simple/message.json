@@ -1,0 +1,10 @@
+{
+  "app_metadata": {
+    "field": "value",
+    "field1": "value1"
+  },
+  "simulated_map": [
+    { "key": "name", "value": "john doe" },
+    { "key": "age", "value": "35" }
+  ]
+}

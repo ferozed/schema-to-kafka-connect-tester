@@ -1,0 +1,41 @@
+{
+  "client_ts": "2023-09-22T00:31:51.269867Z",
+  "app_metadata": {
+    "default_key": "bar"
+  },
+  "envelope": {
+    "event_type_id": "testdma1",
+    "event_type_version_id": "1",
+    "event_uuid": "94871368-8e41-4cd7-9545-34084509685d"
+  },
+  "trigger": {
+    "location_nm": "automated-underwriting",
+    "type_nm": "POST",
+    "source_nm": "/findings"
+  },
+  "user_info": {
+    "zhlid": "93d854a6-52dd-40a7-bcc0-59c208ff7531",
+    "zuid": "245340842",
+    "borrower_id": "f85ac5c2-555c-416a-9406-a44c80f9a982"
+  },
+  "loan_operator": {
+    "zuid": "181448344",
+    "zhlid": "024c322b-3124-49fe-80d3-30282663caa4",
+    "employee_id": "2221231"
+  },
+  "semantic": {
+    "semantic_event_nm": "generate_findings"
+  },
+  "app_info": {
+    "platform_nm": "microservice",
+    "brand_cd": "zillowgroup",
+    "app_nm": "automated-underwriting",
+    "sdk_version_id": "1.0",
+    "lob_nm": "ZHL"
+  },
+  "finding": {
+    "id": "c1859f38-64da-44a7-a432-1800d1909219",
+    "loan_id": "60f424ac-24ea-40f2-80a3-721521c148df",
+    "underwriter": "DesktopUnderwriting"
+  }
+}

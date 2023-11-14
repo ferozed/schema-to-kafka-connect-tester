@@ -1,0 +1,352 @@
+{
+  "$id": "https://gitlab.zgtools.net/analytics/data-engineering/big-data/data-management/dma-eventhub-connector-services-itrc/-/tree/main/terraform/schemas/test_zhl_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AutomatedUnderwriting",
+  "type": "object",
+  "tags": {
+    "lob": [
+      "zillow-home-loans"
+    ],
+    "zg-brand": [
+      "zillow-group"
+    ],
+    "data-tier": [
+      "tier-1"
+    ]
+  },
+  "additionalProperties": false,
+  "properties": {
+    "app_info": {
+      "$ref": "#/definitions/AppInfo"
+    },
+    "app_metadata": {
+      "$ref": "#/definitions/AppMetadata"
+    },
+    "client_ts": {
+      "type": "string",
+      "description": "Format will be yyyy-MM-ddThh:mm:ss.sssZ (ISO, UTC)."
+    },
+    "envelope": {
+      "$ref": "#/definitions/Envelope"
+    },
+    "finding": {
+      "$ref": "#/definitions/Finding"
+    },
+    "loan_operator": {
+      "$ref": "#/definitions/LoanOperator"
+    },
+    "semantic": {
+      "$ref": "#/definitions/Semantic"
+    },
+    "trigger": {
+      "$ref": "#/definitions/Trigger"
+    },
+    "user_info": {
+      "$ref": "#/definitions/UserInfo"
+    },
+    "other_info": {
+      "$ref": "#/definitions/OtherInfo"
+    }
+  },
+  "required": [
+    "client_ts",
+    "envelope",
+    "finding"
+  ],
+  "definitions": {
+    "Envelope": {
+      "type": "object",
+      "title": "Envelope",
+      "required": [
+        "event_type_id",
+        "event_uuid"
+      ],
+      "description": "This block will show key identifying attributes for the event",
+      "properties": {
+        "event_type_id": {
+          "type": "string",
+          "description": "event type this template characterizes"
+        },
+        "event_type_version_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "version number for this event type",
+          "default": null
+        },
+        "event_uuid": {
+          "type": "string",
+          "description": "uuid representing the unique instance of the event"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AppMetadata": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "AppMetadata",
+      "default": null,
+      "description": "Any data that is not mapped in schema and needs a home to park",
+      "properties": {
+        "default_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Default key in the app_metadata block"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Trigger": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "Trigger",
+      "default": null,
+      "description": "This block will describe non-clickstream events that are triggered",
+      "properties": {
+        "location_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "describes the location of the trigger of this event"
+        },
+        "type_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "describes what the event being emitted (taxonomy of trigger action types e.g. submit button, content view)",
+          "default": null
+        },
+        "source_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "the source of the interaction",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserInfo": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "default": null,
+      "title": "UserInfo",
+      "description": "this block will provide key information to describe the user",
+      "properties": {
+        "zuid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "tags": {
+            "content": [
+              "zuid"
+            ]
+          },
+          "description": "primary zg customer identifier"
+        },
+        "zhlid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID of the user that generated the report.",
+          "default": null
+        },
+        "borrower_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID of the primary borrower that this credit pull is performed for.",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "AppInfo": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "AppInfo",
+      "default": null,
+      "description": "this is the block to identify key information about the platform and sdk",
+      "properties": {
+        "app_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "domain name for the platform"
+        },
+        "sdk_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "name of the sdk used",
+          "default": null
+        },
+        "sdk_version_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "alpha|numeric representation of the sdk",
+          "default": null
+        },
+        "brand_cd": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Brand name (zillow/trulia/hotpads/streeteasy/zillowgroup). Use standard format as required.",
+          "default": null
+        },
+        "platform_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Describes the platform where this event originated from (microservice, streaming,logging etc).",
+          "default": null
+        },
+        "lob_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Line of business. (ZHL)",
+          "default": null
+        },
+        "environment_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "any environment that the applications can run in",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "Semantic": {
+      "description": "this block will describe the event with intentional context along with key tags about the event that is provided by the producer",
+      "default": null,
+      "title": "Semantic",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "semantic_event_nm": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "version number for this event type",
+          "default": null
+        },
+        "topic_tag_txt": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "array of topic tags associated with this semantic event | e.g. event may be 'view_content' with topic tags 'finance', 'pre|qualify' characterizing the content",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "Finding": {
+      "type": "object",
+      "title": "Finding",
+      "required": [
+        "underwriter",
+        "loan_id",
+        "id"
+      ],
+      "description": "This block will show key identifying attributes for the event",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Finding ID of the finding"
+        },
+        "underwriter": {
+          "type": "string",
+          "description": "Underwriter for this finding"
+        },
+        "loan_id": {
+          "type": "string",
+          "description": "Loan Id for this finding"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LoanOperator": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "LoanOperator",
+      "default": null,
+      "required": [
+        "zhlid",
+        "zuid",
+        "employee_id"
+      ],
+      "description": "This block will show key identifying the loan operator for this event",
+      "properties": {
+        "zhlid": {
+          "type": "string",
+          "description": "Zhlid for this loan_operator"
+        },
+        "zuid": {
+          "type": "string",
+          "description": "ZUID for this loan_operator"
+        },
+        "employee_id": {
+          "type": "string",
+          "description": "EmployeeId for this loan_operator"
+        }
+      },
+      "additionalProperties": false
+    },
+    "OtherInfo": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "OtherInfo",
+      "default": null,
+      "description": "Other information",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "default": null
+      }
+    }
+  }
+}
